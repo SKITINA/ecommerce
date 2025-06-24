@@ -102,43 +102,6 @@ const products = [
     image: '/src/assets/Poivrons.jpeg',
     description: 'Poivrons colorés et croquants',
     unit: 'kg'
-  },
-  // Desserts Marocains
-  {
-    id: 9,
-    name: 'Chebakia',
-    category: 'desserts',
-    price: 45,
-    image: '/src/assets/desserts.jpg',
-    description: 'Pâtisserie traditionnelle au miel et sésame',
-    unit: 'kg'
-  },
-  {
-    id: 10,
-    name: 'Makroudh',
-    category: 'desserts',
-    price: 50,
-    image: '/src/assets/Makroudh.jpeg',
-    description: 'Gâteau aux dattes et semoule',
-    unit: 'kg'
-  },
-  {
-    id: 11,
-    name: 'Cornes de Gazelle',
-    category: 'desserts',
-    price: 60,
-    image: '/src/assets/Cornes de Gazelle.jpeg',
-    description: 'Pâtisserie aux amandes et fleur d\'oranger',
-    unit: 'kg'
-  },
-  {
-    id: 12,
-    name: 'Baklawa',
-    category: 'desserts',
-    price: 55,
-    image: '/src/assets/desserts.jpg',
-    description: 'Feuilletés aux amandes et miel',
-    unit: 'kg'
   }
 ];
 
@@ -146,7 +109,6 @@ const categories = [
   { id: 'all', name: 'Tous les Produits', icon: '🛒' },
   { id: 'fruits', name: 'Fruits Frais', icon: '🍎' },
   { id: 'vegetables', name: 'Légumes', icon: '🥕' },
-  { id: 'desserts', name: 'Desserts Marocains', icon: '🧁' }
 ]
 
 const packs = [
@@ -163,20 +125,6 @@ const packs = [
       { label: "Tomate", qty: "2 KG", emoji: "🍅" },
       { label: "Oignon", qty: "2 KG", emoji: "🧅" },
       { label: "Carotte", qty: "1.5 KG", emoji: "🥕" },
-      { label: "Courgette", qty: "0.5 KG", emoji: "🥒" },
-      { label: "Concombre", qty: "0.5 KG", emoji: "🥒" },
-      { label: "Pois verts", qty: "0.5 KG", emoji: "🫛" },
-      { label: "Aubergine", qty: "1 KG", emoji: "🍆" },
-      { label: "Poivron vert", qty: "1 KG", emoji: "🫑" },
-      { label: "Tomates cerises", qty: "0.5 KG", emoji: "🍅" },
-      { label: "Betterave", qty: "1 KG", emoji: "🧃" },
-    ],
-    herbes: [
-      { label: "Laitue locale", qty: "1 pièce", emoji: "🥬" },
-      { label: "Persil", qty: "1 botte", emoji: "🌿" },
-      { label: "Coriandre", qty: "1 botte", emoji: "🌱" },
-      { label: "Menthe", qty: "1 botte", emoji: "🌿" },
-      { label: "Ail", qty: "1 pièce", emoji: "🧄" },
     ],
     highlight: "PLUS 17 KG DE FRUITS & LÉGUMES FRAIS"
   },
@@ -187,33 +135,12 @@ const packs = [
       { label: "Orange", qty: "1 KG", emoji: "🍊" },
       { label: "Banane", qty: "1 KG", emoji: "🍌" },
       { label: "Pomme", qty: "1 KG", emoji: "🍎" },
-      { label: "Avocat", qty: "1 pièce", emoji: "🥑" },
     ],
     legumes: [
       { label: "Pomme de terre", qty: "3 KG", emoji: "🥔" },
       { label: "Tomate", qty: "2 KG", emoji: "🍅" },
       { label: "Oignon", qty: "2 KG", emoji: "🧅" },
       { label: "Carotte", qty: "1 KG", emoji: "🥕" },
-      { label: "Courgette", qty: "0.5 KG", emoji: "🥒" },
-      { label: "Concombre", qty: "0.5 KG", emoji: "🥒" },
-      { label: "Pois verts", qty: "0.5 KG", emoji: "🫛" },
-      { label: "Aubergine", qty: "0.5 KG", emoji: "🍆" },
-      { label: "Poivron rouge", qty: "0.25 KG", emoji: "🫑" },
-      { label: "Poivron vert", qty: "0.5 KG", emoji: "🫑" },
-      { label: "Poivron jaune", qty: "0.25 KG", emoji: "🫑" },
-      { label: "Chou-fleur", qty: "1 pièce", emoji: "🥦" },
-      { label: "Céleri", qty: "1 botte", emoji: "🥬" },
-      { label: "Betterave", qty: "1.5 KG", emoji: "🧃" },
-      { label: "Chou vert", qty: "1 pièce", emoji: "🥬" },
-      { label: "Patate douce", qty: "0.5 KG", emoji: "🍠" },
-      { label: "Tomates cerises", qty: "0.5 KG", emoji: "🍅" },
-    ],
-    herbes: [
-      { label: "Laitue locale", qty: "2 pièces", emoji: "🥬" },
-      { label: "Persil", qty: "2 bottes", emoji: "🌿" },
-      { label: "Coriandre", qty: "2 bottes", emoji: "🌱" },
-      { label: "Menthe", qty: "2 bottes", emoji: "🌿" },
-      { label: "Ail", qty: "1 pièce", emoji: "🧄" },
     ],
     highlight: "PLUS 19 KG DE FRUITS & LÉGUMES FRAIS"
   },
@@ -224,37 +151,14 @@ const packs = [
       { label: "Orange", qty: "1 KG", emoji: "🍊" },
       { label: "Banane", qty: "1 KG", emoji: "🍌" },
       { label: "Pomme", qty: "1 KG", emoji: "🍎" },
-      { label: "Avocat", qty: "2 pièces", emoji: "🥑" },
-      { label: "Ananas", qty: "1 pièce", emoji: "🍍" },
-      { label: "Mangue", qty: "2 pièces", emoji: "🥭" },
-      { label: "Kiwi", qty: "0.5 KG", emoji: "🥝" },
+      
     ],
     legumes: [
       { label: "Pomme de terre", qty: "3 KG", emoji: "🥔" },
       { label: "Tomate", qty: "2 KG", emoji: "🍅" },
       { label: "Oignon", qty: "2 KG", emoji: "🧅" },
       { label: "Carotte", qty: "1 KG", emoji: "🥕" },
-      { label: "Courgette", qty: "0.5 KG", emoji: "🥒" },
-      { label: "Concombre", qty: "0.5 KG", emoji: "🥒" },
-      { label: "Pois verts", qty: "0.5 KG", emoji: "🫛" },
-      { label: "Aubergine", qty: "0.5 KG", emoji: "🍆" },
-      { label: "Poivron rouge", qty: "0.25 KG", emoji: "🫑" },
-      { label: "Poivron vert", qty: "0.5 KG", emoji: "🫑" },
-      { label: "Poivron jaune", qty: "0.25 KG", emoji: "🫑" },
-      { label: "Chou-fleur", qty: "1 pièce", emoji: "🥦" },
-      { label: "Céleri", qty: "1 botte", emoji: "🥬" },
-      { label: "Betterave", qty: "1 KG", emoji: "🧃" },
-      { label: "Chou vert", qty: "1 pièce", emoji: "🥬" },
-      { label: "Courge rouge", qty: "0.25 KG", emoji: "🎃" },
-      { label: "Patate douce", qty: "0.5 KG", emoji: "🍠" },
-      { label: "Tomates cerises", qty: "0.5 KG", emoji: "🍅" },
-    ],
-    herbes: [
-      { label: "Laitue locale", qty: "2 pièces", emoji: "🥬" },
-      { label: "Persil", qty: "2 bottes", emoji: "🌿" },
-      { label: "Coriandre", qty: "2 bottes", emoji: "🌱" },
-      { label: "Menthe", qty: "2 bottes", emoji: "🌿" },
-      { label: "Ail", qty: "2 pièces", emoji: "🧄" },
+      
     ],
     highlight: "PLUS 26 KG DE FRUITS & LÉGUMES FRAIS"
   },
@@ -265,82 +169,158 @@ const packs = [
       { label: "Orange", qty: "2 KG", emoji: "🍊" },
       { label: "Pomme", qty: "1 KG", emoji: "🍎" },
       { label: "Kiwi", qty: "1 KG", emoji: "🥝" },
-      { label: "Fraise", qty: "0.5 KG", emoji: "🍓" },
     ],
     legumes: [
       { label: "Carotte", qty: "2 KG", emoji: "🥕" },
       { label: "Courgette", qty: "1 KG", emoji: "🥒" },
       { label: "Concombre", qty: "1 KG", emoji: "🥒" },
       { label: "Épinard", qty: "1 botte", emoji: "🥬" },
-      { label: "Betterave", qty: "1 KG", emoji: "🧃" },
-    ],
-    herbes: [
-      { label: "Menthe", qty: "1 botte", emoji: "🌿" },
-      { label: "Coriandre", qty: "1 botte", emoji: "🌱" },
-      { label: "Persil", qty: "1 botte", emoji: "🌿" },
     ],
     highlight: "PACK BOOST VITAMINES & ANTIOXYDANTS"
   },
 ]
 
+// Définir les variants d'animation pour le stagger
+const packGridVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.13,
+    },
+  },
+}
+const packCardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 60, damping: 18 } },
+}
+
 function PacksPage() {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+      variants={packGridVariants}
       transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
       className="container mx-auto px-4 py-16 min-h-[60vh]"
     >
-      <h2 className="text-4xl md:text-5xl font-bold text-orange-600 mb-10 text-center tracking-tight">Nos Packs</h2>
+      <motion.h2
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
+        className="text-4xl md:text-5xl font-serif font-extrabold text-orange-600 mb-10 text-center tracking-tight drop-shadow-lg"
+      >
+        Nos Packs
+      </motion.h2>
       <div className="grid md:grid-cols-2 gap-10">
-        {packs.map((pack) => (
-          <Card key={pack.name} className="shadow-xl rounded-2xl overflow-hidden border">
-            <CardHeader className="bg-yellow-400/80 text-center py-6">
-              <CardTitle className="text-3xl font-bold text-orange-700 tracking-wide">{pack.name}</CardTitle>
-            </CardHeader>
-            <CardContent className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-yellow-600 mb-2">Fruits</h3>
-                  <ul className="space-y-2">
-                    {pack.fruits.map((item, i) => (
-                      <li key={i} className="flex items-center gap-2 text-lg">
-                        {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
-                        <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
-                      </li>
-                    ))}
-                  </ul>
-                  <h3 className="text-xl font-semibold text-yellow-600 mt-6 mb-2">Herbes fraîches & Salades</h3>
-                  <ul className="space-y-2">
-                    {pack.herbes.map((item, i) => (
-                      <li key={i} className="flex items-center gap-2 text-lg">
-                        {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
-                        <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
-                      </li>
-                    ))}
-                  </ul>
+        {packs.map((pack, idx) => (
+          <motion.div
+            key={pack.name}
+            variants={packCardVariants}
+            className="flex h-full"
+          >
+            <Card className="flex flex-col flex-1 min-h-[520px] h-full shadow-xl rounded-2xl overflow-hidden border bg-white/90">
+              <CardHeader className="bg-yellow-400/80 text-center py-6">
+                <CardTitle className="text-3xl md:text-4xl font-serif font-bold text-orange-700 tracking-wide drop-shadow-sm">
+                  {pack.name}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+                  <div>
+                    <h3 className="text-xl font-serif font-semibold text-yellow-600 mb-2">Fruits</h3>
+                    <ul className="space-y-2">
+                      {pack.fruits.map((item, i) => (
+                        <li key={i} className="flex items-center gap-2 text-lg font-medium text-gray-800">
+                          {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span className="text-2xl">{item.emoji}</span>}
+                          <span className="font-serif">{item.label} : <span className="font-bold font-sans text-black">{item.qty}</span></span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-serif font-semibold text-yellow-600 mb-2">Légumes</h3>
+                    <ul className="space-y-2">
+                      {pack.legumes.map((item, i) => (
+                        <li key={i} className="flex items-center gap-2 text-lg font-medium text-gray-800">
+                          {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span className="text-2xl">{item.emoji}</span>}
+                          <span className="font-serif">{item.label} : <span className="font-bold font-sans text-black">{item.qty}</span></span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-yellow-600 mb-2">Légumes</h3>
-                  <ul className="space-y-2">
-                    {pack.legumes.map((item, i) => (
-                      <li key={i} className="flex items-center gap-2 text-lg">
-                        {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
-                        <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="mt-8 text-center">
+                  <div className="bg-yellow-300 text-orange-800 font-bold text-lg rounded-lg py-3 px-6 inline-block shadow-md animate-pulse font-serif tracking-wide">
+                    {pack.highlight}
+                  </div>
                 </div>
-              </div>
-              <div className="mt-8 text-center">
-                <div className="bg-yellow-300 text-orange-800 font-bold text-lg rounded-lg py-3 px-6 inline-block shadow-md animate-pulse">
-                  {pack.highlight}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
       </div>
+    </motion.section>
+  )
+}
+
+function ProductsPage() {
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4, duration: 0.7, type: 'spring', stiffness: 60 }}
+      className="container mx-auto px-4 pb-16"
+    >
+      <motion.div 
+        layout
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      >
+        <AnimatePresence>
+          {products.map((product) => (
+            <motion.div
+              key={product.id}
+              layout
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="h-full hover:shadow-xl transition-shadow">
+                <CardHeader className="p-0">
+                  <div className="relative overflow-hidden rounded-t-lg">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-48 object-cover transition-transform hover:scale-110"
+                    />
+                    <Badge className="absolute top-2 right-2 bg-green-600">
+                      {product.price} MAD/{product.unit}
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-4">
+                  <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
+                  <CardDescription className="text-sm text-gray-600">
+                    {product.description}
+                  </CardDescription>
+                </CardContent>
+                <CardFooter className="p-4 pt-0">
+                  <Button
+                    onClick={() => addToCart(product)}
+                    className="w-full bg-green-600 hover:bg-green-700"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Ajouter au Panier
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </motion.section>
   )
 }
@@ -471,223 +451,239 @@ function App() {
           </div>
         </motion.header>
 
-        {/* Hero Section full screen sous la navbar */}
-        <motion.section
-          initial={{ opacity: 0, y: 40, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.9, type: 'spring', stiffness: 50 }}
-          className="relative w-full flex items-center justify-center overflow-hidden"
-          style={{
-            backgroundImage: `url(${heroBg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`
-          }}
-        >
-          <div className="absolute inset-0 bg-black/60 z-0" />
-          <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center px-4 py-12">
-            <h2 className="text-4xl md:text-7xl font-extrabold text-white mb-4 drop-shadow-2xl leading-tight">
-              Fruits, Légumes & Produits Frais
-            </h2>
-            <p className="text-2xl md:text-3xl text-gray-100 mb-10 drop-shadow-xl font-medium">
-              Commandez des produits frais, sains et variés, livrés chez vous en quelques clics !
-            </p>
-            <motion.a
-              href="#"
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-block px-10 py-5 bg-green-600 hover:bg-green-700 text-white text-2xl font-bold rounded-full shadow-2xl transition-all duration-200 border-4 border-white/10"
-            >
-              Découvrir le marché
-            </motion.a>
-          </div>
-        </motion.section>
+        <Routes>
+          <Route path="/" element={
+            <>
+              {/* Hero Section full screen sous la navbar */}
+              <motion.section
+                initial={{ opacity: 0, y: 40, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.9, type: 'spring', stiffness: 50 }}
+                className="relative w-full flex items-center justify-center overflow-hidden"
+                style={{
+                  backgroundImage: `url(${heroBg})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`
+                }}
+              >
+                <div className="absolute inset-0 bg-black/60 z-0" />
+                <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center px-4 py-12">
+                  <h2 className="text-4xl md:text-7xl font-extrabold text-white mb-4 drop-shadow-2xl leading-tight">
+                    Fruits, Légumes & Produits Frais
+                  </h2>
+                  <p className="text-2xl md:text-3xl text-gray-100 mb-10 drop-shadow-xl font-medium">
+                    Commandez des produits frais, sains et variés, livrés chez vous en quelques clics !
+                  </p>
+                  <motion.a
+                    href="#"
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="inline-block px-10 py-5 bg-green-600 hover:bg-green-700 text-white text-2xl font-bold rounded-full shadow-2xl transition-all duration-200 border-4 border-white/10"
+                  >
+                    Découvrir le marché
+                  </motion.a>
+                </div>
+              </motion.section>
 
-        {/* Section Notre Histoire */}
-        <section ref={histoireRef} id="histoire" className="w-full py-20 bg-white">
-          <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-12 px-4 md:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: -40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
-              className="flex-1"
-            >
-              <motion.h2
-                initial={{ opacity: 0, y: -40 }}
-                whileInView={{ opacity: 1, y: 0 }}
+              {/* Section Notre Histoire */}
+              <section ref={histoireRef} id="histoire" className="w-full py-20 bg-white">
+                <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-12 px-4 md:px-8">
+                  <motion.div
+                    initial={{ opacity: 0, y: -40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
+                    className="flex-1"
+                  >
+                    <motion.h2
+                      initial={{ opacity: 0, y: -40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
+                      className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8"
+                    >
+                      NOTRE HISTOIRE
+                    </motion.h2>
+                    <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                      FreshMarket est une aventure familiale passionnée par la qualité et la fraîcheur. Depuis des années, nous sélectionnons avec soin les meilleurs fruits, légumes et desserts marocains pour régaler vos papilles.<br/><br/>
+                      Notre mission : vous offrir chaque jour le meilleur du marché
+                    </p>
+                    <p className="text-xl font-semibold text-green-700 font-serif">Fait avec Passion</p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 40, scale: 0.9 }}
+                    whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.9, type: 'spring', stiffness: 60, delay: 0.2 }}
+                    className="flex-1 flex justify-center"
+                  >
+                    <img
+                      src={fruitsImg}
+                      alt="Fruits et légumes FreshMarket"
+                      className="rounded-2xl shadow-2xl w-full max-w-md object-cover animate-fadein"
+                      style={{ minHeight: 320, maxHeight: 420 }}
+                    />
+                  </motion.div>
+                </div>
+              </section>
+
+              {/* Section Packs (home) */}
+              <motion.section
+                initial="hidden"
+                whileInView="show"
                 viewport={{ once: true }}
+                variants={packGridVariants}
                 transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
-                className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8"
+                className="container mx-auto px-4 py-16 min-h-[60vh]"
               >
-                NOTRE HISTOIRE
-              </motion.h2>
-              <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                FreshMarket est une aventure familiale passionnée par la qualité et la fraîcheur. Depuis des années, nous sélectionnons avec soin les meilleurs fruits, légumes et desserts marocains pour régaler vos papilles.<br/><br/>
-                Notre mission : vous offrir chaque jour le meilleur du marché
-              </p>
-              <p className="text-xl font-semibold text-green-700 font-serif">Fait avec Passion</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 40, scale: 0.9 }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, type: 'spring', stiffness: 60, delay: 0.2 }}
-              className="flex-1 flex justify-center"
-            >
-              <img
-                src={histoireImg}
-                alt="Notre histoire FreshMarket"
-                className="rounded-2xl shadow-2xl w-full max-w-md object-cover animate-fadein"
-                style={{ minHeight: 320, maxHeight: 420 }}
-              />
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Section Packs (home) */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
-          className="container mx-auto px-4 py-16 min-h-[60vh]"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-orange-600 mb-10 text-center tracking-tight">Nos Packs</h2>
-          <div className="grid md:grid-cols-2 gap-10">
-            {packs.map((pack) => (
-              <Card key={pack.name} className="shadow-xl rounded-2xl overflow-hidden border">
-                <CardHeader className="bg-yellow-400/80 text-center py-6">
-                  <CardTitle className="text-3xl font-bold text-orange-700 tracking-wide">{pack.name}</CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="text-xl font-semibold text-yellow-600 mb-2">Fruits</h3>
-                      <ul className="space-y-2">
-                        {pack.fruits.map((item, i) => (
-                          <li key={i} className="flex items-center gap-2 text-lg">
-                            {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
-                            <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
-                          </li>
-                        ))}
-                      </ul>
-                      <h3 className="text-xl font-semibold text-yellow-600 mt-6 mb-2">Herbes fraîches & Salades</h3>
-                      <ul className="space-y-2">
-                        {pack.herbes.map((item, i) => (
-                          <li key={i} className="flex items-center gap-2 text-lg">
-                            {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
-                            <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-yellow-600 mb-2">Légumes</h3>
-                      <ul className="space-y-2">
-                        {pack.legumes.map((item, i) => (
-                          <li key={i} className="flex items-center gap-2 text-lg">
-                            {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
-                            <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="mt-8 text-center">
-                    <div className="bg-yellow-300 text-orange-800 font-bold text-lg rounded-lg py-3 px-6 inline-block shadow-md animate-pulse">
-                      {pack.highlight}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Categories */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7, type: 'spring', stiffness: 60 }}
-          className="container mx-auto px-4 mb-8"
-        >
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <motion.button
-                key={category.id}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all ${
-                  selectedCategory === category.id
-                    ? 'bg-green-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-green-50 shadow-md'
-                }`}
-              >
-                <span className="mr-2">{category.icon}</span>
-                {category.name}
-              </motion.button>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Products Grid */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.7, type: 'spring', stiffness: 60 }}
-          className="container mx-auto px-4 pb-16"
-        >
-          <motion.div 
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-          >
-            <AnimatePresence>
-              {filteredProducts.map((product) => (
-                <motion.div
-                  key={product.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.3 }}
+                <motion.h2
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
+                  className="text-4xl md:text-5xl font-serif font-extrabold text-orange-600 mb-10 text-center tracking-tight drop-shadow-lg"
                 >
-                  <Card className="h-full hover:shadow-xl transition-shadow">
-                    <CardHeader className="p-0">
-                      <div className="relative overflow-hidden rounded-t-lg">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-48 object-cover transition-transform hover:scale-110"
-                        />
-                        <Badge className="absolute top-2 right-2 bg-green-600">
-                          {product.price} MAD/{product.unit}
-                        </Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-4">
-                      <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
-                      <CardDescription className="text-sm text-gray-600">
-                        {product.description}
-                      </CardDescription>
-                    </CardContent>
-                    <CardFooter className="p-4 pt-0">
-                      <Button
-                        onClick={() => addToCart(product)}
-                        className="w-full bg-green-600 hover:bg-green-700"
+                  Nos Packs
+                </motion.h2>
+                <div className="grid md:grid-cols-2 gap-10">
+                  {packs.map((pack, idx) => (
+                    <motion.div
+                      key={pack.name}
+                      variants={packCardVariants}
+                      className="flex h-full"
+                    >
+                      <Card className="flex flex-col flex-1 min-h-[520px] h-full shadow-xl rounded-2xl overflow-hidden border bg-white/90">
+                        <CardHeader className="bg-yellow-400/80 text-center py-6">
+                          <CardTitle className="text-3xl md:text-4xl font-serif font-bold text-orange-700 tracking-wide drop-shadow-sm">
+                            {pack.name}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+                            <div>
+                              <h3 className="text-xl font-serif font-semibold text-yellow-600 mb-2">Fruits</h3>
+                              <ul className="space-y-2">
+                                {pack.fruits.map((item, i) => (
+                                  <li key={i} className="flex items-center gap-2 text-lg font-medium text-gray-800">
+                                    {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span className="text-2xl">{item.emoji}</span>}
+                                    <span className="font-serif">{item.label} : <span className="font-bold font-sans text-black">{item.qty}</span></span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-serif font-semibold text-yellow-600 mb-2">Légumes</h3>
+                              <ul className="space-y-2">
+                                {pack.legumes.map((item, i) => (
+                                  <li key={i} className="flex items-center gap-2 text-lg font-medium text-gray-800">
+                                    {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span className="text-2xl">{item.emoji}</span>}
+                                    <span className="font-serif">{item.label} : <span className="font-bold font-sans text-black">{item.qty}</span></span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                          <div className="mt-8 text-center">
+                            <div className="bg-yellow-300 text-orange-800 font-bold text-lg rounded-lg py-3 px-6 inline-block shadow-md animate-pulse font-serif tracking-wide">
+                              {pack.highlight}
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.section>
+
+              {/* Categories */}
+              <motion.section
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.7, type: 'spring', stiffness: 60 }}
+                className="container mx-auto px-4 mb-8"
+              >
+                <div className="flex flex-wrap justify-center gap-4">
+                  {categories.map((category) => (
+                    <motion.button
+                      key={category.id}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setSelectedCategory(category.id)}
+                      className={`px-6 py-3 rounded-full font-medium transition-all ${
+                        selectedCategory === category.id
+                          ? 'bg-green-600 text-white shadow-lg'
+                          : 'bg-white text-gray-700 hover:bg-green-50 shadow-md'
+                      }`}
+                    >
+                      <span className="mr-2">{category.icon}</span>
+                      {category.name}
+                    </motion.button>
+                  ))}
+                </div>
+              </motion.section>
+
+              {/* Products Grid */}
+              <motion.section
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.7, type: 'spring', stiffness: 60 }}
+                className="container mx-auto px-4 pb-16"
+              >
+                <motion.div 
+                  layout
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                >
+                  <AnimatePresence>
+                    {filteredProducts.map((product) => (
+                      <motion.div
+                        key={product.id}
+                        layout
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        whileHover={{ y: -5 }}
+                        transition={{ duration: 0.3 }}
                       >
-                        <Plus className="w-4 h-4 mr-2" />
-                        Ajouter au Panier
-                      </Button>
-                    </CardFooter>
-                  </Card>
+                        <Card className="h-full hover:shadow-xl transition-shadow">
+                          <CardHeader className="p-0">
+                            <div className="relative overflow-hidden rounded-t-lg">
+                              <img
+                                src={product.image}
+                                alt={product.name}
+                                className="w-full h-48 object-cover transition-transform hover:scale-110"
+                              />
+                              <Badge className="absolute top-2 right-2 bg-green-600">
+                                {product.price} MAD/{product.unit}
+                              </Badge>
+                            </div>
+                          </CardHeader>
+                          <CardContent className="p-4">
+                            <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
+                            <CardDescription className="text-sm text-gray-600">
+                              {product.description}
+                            </CardDescription>
+                          </CardContent>
+                          <CardFooter className="p-4 pt-0">
+                            <Button
+                              onClick={() => addToCart(product)}
+                              className="w-full bg-green-600 hover:bg-green-700"
+                            >
+                              <Plus className="w-4 h-4 mr-2" />
+                              Ajouter au Panier
+                            </Button>
+                          </CardFooter>
+                        </Card>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
                 </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </motion.section>
+              </motion.section>
+            </>
+          } />
+          <Route path="/packs" element={<PacksPage />} />
+          <Route path="/produits" element={<ProductsPage />} />
+        </Routes>
 
         {/* Cart Sidebar */}
         <AnimatePresence>
@@ -697,7 +693,7 @@ function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black bg-opacity-50 z-50"
+                className="fixed inset-0 bg-black/10 backdrop-blur-sm transition-all duration-300 z-50"
                 onClick={() => setIsCartOpen(false)}
               />
               <motion.div

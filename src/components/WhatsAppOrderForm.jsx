@@ -24,30 +24,23 @@ const WhatsAppOrderForm = ({ cart, total, isOpen, onClose }) => {
   }
 
   const generateWhatsAppMessage = () => {
-    let message = "🛒 *Nouvelle Commande FreshMarket*\\n\\n"
-    message += `👤 *Client:* ${formData.name}\\n`
-    message += `📱 *Téléphone:* ${formData.phone}\\n`
-    message += `📍 *Adresse:* ${formData.address}\\n\\n`
-    message += "*📦 Produits commandés:*\\n"
-    
+    let message = "🛒 *Nouvelle Commande FreshMarket*\n\n"
+    message += `👤 *Client:* ${formData.name}\n`
+    message += `📍 *Adresse:* ${formData.address}\n\n`
+    message += "*🛍️ Achats :*\n"
     cart.forEach(item => {
-      message += `• ${item.name} - ${item.quantity} ${item.unit} - ${item.price * item.quantity} MAD\\n`
+      message += `- ${item.name} x${item.quantity}\n`
     })
-    
-    message += `\\n💰 *Total: ${total} MAD*\\n\\n`
-    
+    message += `\n💰 *Total: ${total} MAD*\n\n`
     if (formData.notes) {
-      message += `📝 *Notes:* ${formData.notes}\\n\\n`
+      message += `📝 *Notes:* ${formData.notes}\n\n`
     }
-    
-    message += "Merci de confirmer cette commande et de m'indiquer les modalités de livraison."
-    
     return encodeURIComponent(message)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!formData.name || !formData.phone || !formData.address) {
+    if (!formData.name || !formData.address) {
       alert('Veuillez remplir tous les champs obligatoires')
       return
     }
@@ -66,7 +59,7 @@ const WhatsAppOrderForm = ({ cart, total, isOpen, onClose }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/30 z-50"
+            className="fixed inset-0 bg-black/10 backdrop-blur-sm transition-all duration-300 z-50"
             onClick={onClose}
           />
           <motion.div
@@ -100,19 +93,6 @@ const WhatsAppOrderForm = ({ cart, total, isOpen, onClose }) => {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Votre nom complet"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="phone">Téléphone *</Label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="06 XX XX XX XX"
                       required
                     />
                   </div>
