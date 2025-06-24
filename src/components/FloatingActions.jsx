@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mic, Mail, Plus, X, MessageCircle } from 'lucide-react'
+import { Headphones, Mail, Plus, X } from 'lucide-react'
 
 const actions = [
   {
-    icon: <Mic className="w-6 h-6" />,
+    icon: <Headphones className="w-6 h-6" />,
     label: 'Audio',
     color: 'bg-green-500',
     onClick: () => alert('Fonction audio à implémenter !'),
+    glow: true,
   },
   {
     icon: <Mail className="w-6 h-6" />,
@@ -42,7 +43,7 @@ export default function FloatingActions() {
                 key={action.label}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className={`w-12 h-12 flex items-center justify-center rounded-full shadow-lg text-white ${action.color} focus:outline-none`}
+                className={`w-12 h-12 flex items-center justify-center rounded-full shadow-lg text-white ${action.color} focus:outline-none ${action.glow ? 'floating-audio-glow' : ''}`}
                 style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.15)' }}
                 onClick={action.onClick}
                 title={action.label}
@@ -73,7 +74,7 @@ export default function FloatingActions() {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="w-14 h-14 flex items-center justify-center rounded-full shadow-xl text-white bg-green-600 focus:outline-none"
+          className="w-14 h-14 flex items-center justify-center rounded-full shadow-xl text-white bg-green-600 focus:outline-none floating-audio-glow"
           style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.18)' }}
           onClick={() => setOpen(true)}
           title="Ouvrir menu audio"
@@ -81,9 +82,19 @@ export default function FloatingActions() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         >
-          <Mic className="w-8 h-8" />
+          <Headphones className="w-8 h-8" />
         </motion.button>
       )}
+      <style>{`
+        .floating-audio-glow {
+          box-shadow: 0 0 0 0 #22c55e, 0 0 16px 4px #22c55e66, 0 4px 16px rgba(0,0,0,0.18);
+          animation: floating-glow 1.8s infinite alternate;
+        }
+        @keyframes floating-glow {
+          0% { box-shadow: 0 0 0 0 #22c55e, 0 0 16px 4px #22c55e66, 0 4px 16px rgba(0,0,0,0.18); }
+          100% { box-shadow: 0 0 0 8px #22c55e44, 0 0 32px 8px #22c55e66, 0 4px 16px rgba(0,0,0,0.18); }
+        }
+      `}</style>
     </div>
   )
 } 

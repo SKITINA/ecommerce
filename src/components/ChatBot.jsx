@@ -46,11 +46,11 @@ const ChatBot = ({ isOpen, onClose }) => {
       const response = await generateResponse(inputMessage, currentMessages)
       
       const botMessage = {
-        id: Date.now() + 1,
-        type: 'bot',
+      id: Date.now() + 1,
+      type: 'bot',
         text: response,
-        timestamp: new Date()
-      }
+      timestamp: new Date()
+    }
       setMessages(prev => [...prev, botMessage])
     } catch (error) {
       console.error('Erreur lors de la génération de réponse:', error)
@@ -79,11 +79,11 @@ const ChatBot = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 20, scale: 0.9 }}
-          transition={{ duration: 0.3 }}
-          className="fixed bottom-24 left-6 w-96 max-w-[calc(100vw-3rem)] bg-white rounded-lg shadow-2xl z-40 border"
+          exit={{ opacity: 0, y: 30, scale: 0.95 }}
+          transition={{ duration: 0.3, type: 'spring', stiffness: 60 }}
+          className="fixed right-6 bottom-[88px] w-80 max-w-[calc(100vw-2rem)] bg-white rounded-lg shadow-2xl z-50 border"
         >
           <Card className="h-[500px] flex flex-col">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 bg-blue-600 text-white rounded-t-lg">
@@ -175,7 +175,7 @@ const ChatBot = ({ isOpen, onClose }) => {
                     {isLoading ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
-                      <Send className="w-4 h-4" />
+                    <Send className="w-4 h-4" />
                     )}
                   </Button>
                 </div>

@@ -1,17 +1,31 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
-import { ShoppingCart, Plus, Minus, X, MessageCircle, Phone, MapPin, Star } from 'lucide-react'
+import { ShoppingCart, Plus, Minus, X, MessageCircle, Phone, MapPin, Star, Bot } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import WhatsAppOrderForm from './components/WhatsAppOrderForm.jsx'
 import ChatBot from './components/ChatBot.jsx'
-import fruitsImg from './assets/fruits.jpg'
-import vegetablesImg from './assets/vegetables.jpg'
-import dessertsImg from './assets/desserts.jpg'
-import logo from './assets/logo.jpeg'
+import bananeImg from '@/assets/banane.jpeg'
+import carotteImg from '@/assets/Carrote.jpeg'
+import cornesDeGazelleImg from '@/assets/Cornes de Gazelle.jpeg'
+import courgettesImg from '@/assets/Courgettes.jpeg'
+import dessertsImg from '@/assets/desserts.jpg'
+import foodImg from '@/assets/food.jpg'
+import fraiseImg from '@/assets/fraise.jpeg'
+import fruitsImg from '@/assets/fruits.jpg'
+import logoImg from '@/assets/logo.jpeg'
+import makroudhImg from '@/assets/Makroudh.jpeg'
+import orangesImg from '@/assets/oranges.jpeg'
+import poivronsImg from '@/assets/Poivrons.jpeg'
+import pommerougeImg from '@/assets/pommerouge.jpeg'
+import tomatesImg from '@/assets/tomates.jpg'
+import vegetablesImg from '@/assets/vegetables.jpg'
 import FloatingActions from './components/FloatingActions.jsx'
+import heroBg from './assets/food.jpg'
+import histoireImg from './assets/desserts.jpg'
 import './App.css'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 // Données des produits
 const products = [
@@ -21,7 +35,7 @@ const products = [
     name: 'Pommes Rouges',
     category: 'fruits',
     price: 25,
-    image: fruitsImg,
+    image: '/src/assets/pommerouge.jpeg',
     description: 'Pommes rouges fraîches et croquantes',
     unit: 'kg'
   },
@@ -30,7 +44,7 @@ const products = [
     name: 'Bananes',
     category: 'fruits',
     price: 18,
-    image: fruitsImg,
+    image: '/src/assets/banane.jpeg',
     description: 'Bananes mûres et sucrées',
     unit: 'kg'
   },
@@ -39,7 +53,7 @@ const products = [
     name: 'Oranges',
     category: 'fruits',
     price: 22,
-    image: fruitsImg,
+    image: '/src/assets/oranges.jpeg',
     description: 'Oranges juteuses riches en vitamine C',
     unit: 'kg'
   },
@@ -48,7 +62,7 @@ const products = [
     name: 'Fraises',
     category: 'fruits',
     price: 35,
-    image: fruitsImg,
+    image: '/src/assets/fraise.jpeg',
     description: 'Fraises fraîches de saison',
     unit: 'kg'
   },
@@ -58,7 +72,7 @@ const products = [
     name: 'Tomates',
     category: 'vegetables',
     price: 15,
-    image: vegetablesImg,
+    image: '/src/assets/tomates.jpg',
     description: 'Tomates fraîches et savoureuses',
     unit: 'kg'
   },
@@ -67,7 +81,7 @@ const products = [
     name: 'Carottes',
     category: 'vegetables',
     price: 12,
-    image: vegetablesImg,
+    image: '/src/assets/Carrote.jpeg',
     description: 'Carottes croquantes et nutritives',
     unit: 'kg'
   },
@@ -76,7 +90,7 @@ const products = [
     name: 'Courgettes',
     category: 'vegetables',
     price: 20,
-    image: vegetablesImg,
+    image: '/src/assets/Courgettes.jpeg',
     description: 'Courgettes tendres et fraîches',
     unit: 'kg'
   },
@@ -85,7 +99,7 @@ const products = [
     name: 'Poivrons',
     category: 'vegetables',
     price: 28,
-    image: vegetablesImg,
+    image: '/src/assets/Poivrons.jpeg',
     description: 'Poivrons colorés et croquants',
     unit: 'kg'
   },
@@ -95,7 +109,7 @@ const products = [
     name: 'Chebakia',
     category: 'desserts',
     price: 45,
-    image: dessertsImg,
+    image: '/src/assets/desserts.jpg',
     description: 'Pâtisserie traditionnelle au miel et sésame',
     unit: 'kg'
   },
@@ -104,7 +118,7 @@ const products = [
     name: 'Makroudh',
     category: 'desserts',
     price: 50,
-    image: dessertsImg,
+    image: '/src/assets/Makroudh.jpeg',
     description: 'Gâteau aux dattes et semoule',
     unit: 'kg'
   },
@@ -113,7 +127,7 @@ const products = [
     name: 'Cornes de Gazelle',
     category: 'desserts',
     price: 60,
-    image: dessertsImg,
+    image: '/src/assets/Cornes de Gazelle.jpeg',
     description: 'Pâtisserie aux amandes et fleur d\'oranger',
     unit: 'kg'
   },
@@ -122,11 +136,11 @@ const products = [
     name: 'Baklawa',
     category: 'desserts',
     price: 55,
-    image: dessertsImg,
+    image: '/src/assets/desserts.jpg',
     description: 'Feuilletés aux amandes et miel',
     unit: 'kg'
   }
-]
+];
 
 const categories = [
   { id: 'all', name: 'Tous les Produits', icon: '🛒' },
@@ -135,12 +149,209 @@ const categories = [
   { id: 'desserts', name: 'Desserts Marocains', icon: '🧁' }
 ]
 
+const packs = [
+  {
+    name: "Pack Essentiel",
+    fruits: [
+      { label: "Citron", qty: "0.5 KG", emoji: "🍋" },
+      { label: "Orange", qty: "1 KG", emoji: "🍊" },
+      { label: "Banane", qty: "1 KG", emoji: "🍌" },
+      { label: "Pomme", qty: "1 KG", emoji: "🍎" },
+    ],
+    legumes: [
+      { label: "Pomme de terre", qty: "3 KG", emoji: "🥔" },
+      { label: "Tomate", qty: "2 KG", emoji: "🍅" },
+      { label: "Oignon", qty: "2 KG", emoji: "🧅" },
+      { label: "Carotte", qty: "1.5 KG", emoji: "🥕" },
+      { label: "Courgette", qty: "0.5 KG", emoji: "🥒" },
+      { label: "Concombre", qty: "0.5 KG", emoji: "🥒" },
+      { label: "Pois verts", qty: "0.5 KG", emoji: "🫛" },
+      { label: "Aubergine", qty: "1 KG", emoji: "🍆" },
+      { label: "Poivron vert", qty: "1 KG", emoji: "🫑" },
+      { label: "Tomates cerises", qty: "0.5 KG", emoji: "🍅" },
+      { label: "Betterave", qty: "1 KG", emoji: "🧃" },
+    ],
+    herbes: [
+      { label: "Laitue locale", qty: "1 pièce", emoji: "🥬" },
+      { label: "Persil", qty: "1 botte", emoji: "🌿" },
+      { label: "Coriandre", qty: "1 botte", emoji: "🌱" },
+      { label: "Menthe", qty: "1 botte", emoji: "🌿" },
+      { label: "Ail", qty: "1 pièce", emoji: "🧄" },
+    ],
+    highlight: "PLUS 17 KG DE FRUITS & LÉGUMES FRAIS"
+  },
+  {
+    name: "Pack Famille",
+    fruits: [
+      { label: "Citron", qty: "0.5 KG", emoji: "🍋" },
+      { label: "Orange", qty: "1 KG", emoji: "🍊" },
+      { label: "Banane", qty: "1 KG", emoji: "🍌" },
+      { label: "Pomme", qty: "1 KG", emoji: "🍎" },
+      { label: "Avocat", qty: "1 pièce", emoji: "🥑" },
+    ],
+    legumes: [
+      { label: "Pomme de terre", qty: "3 KG", emoji: "🥔" },
+      { label: "Tomate", qty: "2 KG", emoji: "🍅" },
+      { label: "Oignon", qty: "2 KG", emoji: "🧅" },
+      { label: "Carotte", qty: "1 KG", emoji: "🥕" },
+      { label: "Courgette", qty: "0.5 KG", emoji: "🥒" },
+      { label: "Concombre", qty: "0.5 KG", emoji: "🥒" },
+      { label: "Pois verts", qty: "0.5 KG", emoji: "🫛" },
+      { label: "Aubergine", qty: "0.5 KG", emoji: "🍆" },
+      { label: "Poivron rouge", qty: "0.25 KG", emoji: "🫑" },
+      { label: "Poivron vert", qty: "0.5 KG", emoji: "🫑" },
+      { label: "Poivron jaune", qty: "0.25 KG", emoji: "🫑" },
+      { label: "Chou-fleur", qty: "1 pièce", emoji: "🥦" },
+      { label: "Céleri", qty: "1 botte", emoji: "🥬" },
+      { label: "Betterave", qty: "1.5 KG", emoji: "🧃" },
+      { label: "Chou vert", qty: "1 pièce", emoji: "🥬" },
+      { label: "Patate douce", qty: "0.5 KG", emoji: "🍠" },
+      { label: "Tomates cerises", qty: "0.5 KG", emoji: "🍅" },
+    ],
+    herbes: [
+      { label: "Laitue locale", qty: "2 pièces", emoji: "🥬" },
+      { label: "Persil", qty: "2 bottes", emoji: "🌿" },
+      { label: "Coriandre", qty: "2 bottes", emoji: "🌱" },
+      { label: "Menthe", qty: "2 bottes", emoji: "🌿" },
+      { label: "Ail", qty: "1 pièce", emoji: "🧄" },
+    ],
+    highlight: "PLUS 19 KG DE FRUITS & LÉGUMES FRAIS"
+  },
+  {
+    name: "Pack Prestige",
+    fruits: [
+      { label: "Citron", qty: "0.5 KG", emoji: "🍋" },
+      { label: "Orange", qty: "1 KG", emoji: "🍊" },
+      { label: "Banane", qty: "1 KG", emoji: "🍌" },
+      { label: "Pomme", qty: "1 KG", emoji: "🍎" },
+      { label: "Avocat", qty: "2 pièces", emoji: "🥑" },
+      { label: "Ananas", qty: "1 pièce", emoji: "🍍" },
+      { label: "Mangue", qty: "2 pièces", emoji: "🥭" },
+      { label: "Kiwi", qty: "0.5 KG", emoji: "🥝" },
+    ],
+    legumes: [
+      { label: "Pomme de terre", qty: "3 KG", emoji: "🥔" },
+      { label: "Tomate", qty: "2 KG", emoji: "🍅" },
+      { label: "Oignon", qty: "2 KG", emoji: "🧅" },
+      { label: "Carotte", qty: "1 KG", emoji: "🥕" },
+      { label: "Courgette", qty: "0.5 KG", emoji: "🥒" },
+      { label: "Concombre", qty: "0.5 KG", emoji: "🥒" },
+      { label: "Pois verts", qty: "0.5 KG", emoji: "🫛" },
+      { label: "Aubergine", qty: "0.5 KG", emoji: "🍆" },
+      { label: "Poivron rouge", qty: "0.25 KG", emoji: "🫑" },
+      { label: "Poivron vert", qty: "0.5 KG", emoji: "🫑" },
+      { label: "Poivron jaune", qty: "0.25 KG", emoji: "🫑" },
+      { label: "Chou-fleur", qty: "1 pièce", emoji: "🥦" },
+      { label: "Céleri", qty: "1 botte", emoji: "🥬" },
+      { label: "Betterave", qty: "1 KG", emoji: "🧃" },
+      { label: "Chou vert", qty: "1 pièce", emoji: "🥬" },
+      { label: "Courge rouge", qty: "0.25 KG", emoji: "🎃" },
+      { label: "Patate douce", qty: "0.5 KG", emoji: "🍠" },
+      { label: "Tomates cerises", qty: "0.5 KG", emoji: "🍅" },
+    ],
+    herbes: [
+      { label: "Laitue locale", qty: "2 pièces", emoji: "🥬" },
+      { label: "Persil", qty: "2 bottes", emoji: "🌿" },
+      { label: "Coriandre", qty: "2 bottes", emoji: "🌱" },
+      { label: "Menthe", qty: "2 bottes", emoji: "🌿" },
+      { label: "Ail", qty: "2 pièces", emoji: "🧄" },
+    ],
+    highlight: "PLUS 26 KG DE FRUITS & LÉGUMES FRAIS"
+  },
+  {
+    name: "Pack Vitalité",
+    fruits: [
+      { label: "Citron", qty: "1 KG", emoji: "🍋" },
+      { label: "Orange", qty: "2 KG", emoji: "🍊" },
+      { label: "Pomme", qty: "1 KG", emoji: "🍎" },
+      { label: "Kiwi", qty: "1 KG", emoji: "🥝" },
+      { label: "Fraise", qty: "0.5 KG", emoji: "🍓" },
+    ],
+    legumes: [
+      { label: "Carotte", qty: "2 KG", emoji: "🥕" },
+      { label: "Courgette", qty: "1 KG", emoji: "🥒" },
+      { label: "Concombre", qty: "1 KG", emoji: "🥒" },
+      { label: "Épinard", qty: "1 botte", emoji: "🥬" },
+      { label: "Betterave", qty: "1 KG", emoji: "🧃" },
+    ],
+    herbes: [
+      { label: "Menthe", qty: "1 botte", emoji: "🌿" },
+      { label: "Coriandre", qty: "1 botte", emoji: "🌱" },
+      { label: "Persil", qty: "1 botte", emoji: "🌿" },
+    ],
+    highlight: "PACK BOOST VITAMINES & ANTIOXYDANTS"
+  },
+]
+
+function PacksPage() {
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
+      className="container mx-auto px-4 py-16 min-h-[60vh]"
+    >
+      <h2 className="text-4xl md:text-5xl font-bold text-orange-600 mb-10 text-center tracking-tight">Nos Packs</h2>
+      <div className="grid md:grid-cols-2 gap-10">
+        {packs.map((pack) => (
+          <Card key={pack.name} className="shadow-xl rounded-2xl overflow-hidden border">
+            <CardHeader className="bg-yellow-400/80 text-center py-6">
+              <CardTitle className="text-3xl font-bold text-orange-700 tracking-wide">{pack.name}</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-xl font-semibold text-yellow-600 mb-2">Fruits</h3>
+                  <ul className="space-y-2">
+                    {pack.fruits.map((item, i) => (
+                      <li key={i} className="flex items-center gap-2 text-lg">
+                        {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
+                        <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
+                      </li>
+                    ))}
+                  </ul>
+                  <h3 className="text-xl font-semibold text-yellow-600 mt-6 mb-2">Herbes fraîches & Salades</h3>
+                  <ul className="space-y-2">
+                    {pack.herbes.map((item, i) => (
+                      <li key={i} className="flex items-center gap-2 text-lg">
+                        {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
+                        <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-yellow-600 mb-2">Légumes</h3>
+                  <ul className="space-y-2">
+                    {pack.legumes.map((item, i) => (
+                      <li key={i} className="flex items-center gap-2 text-lg">
+                        {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
+                        <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="mt-8 text-center">
+                <div className="bg-yellow-300 text-orange-800 font-bold text-lg rounded-lg py-3 px-6 inline-block shadow-md animate-pulse">
+                  {pack.highlight}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </motion.section>
+  )
+}
+
 function App() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [cart, setCart] = useState([])
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isChatbotOpen, setIsChatbotOpen] = useState(false)
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false)
+  const histoireRef = useRef(null)
 
   // Filtrer les produits par catégorie
   const filteredProducts = selectedCategory === 'all' 
@@ -191,25 +402,38 @@ function App() {
     setIsCartOpen(false)
   }
 
+  // Hauteur de la navbar (pour calcul dynamique)
+  const NAVBAR_HEIGHT = 88 // px (ajuster si besoin)
+
+  // Scroll vers la section Notre Histoire
+  const scrollToHistoire = (e) => {
+    e.preventDefault()
+    if (histoireRef.current) {
+      histoireRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
-      className="min-h-screen bg-gradient-to-br from-green-50 to-orange-50"
-    >
-      {/* Header */}
-      <header className="bg-white shadow-lg sticky top-0 z-50 rounded-b-xl animate-navbar-fade">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, type: 'spring', stiffness: 80 }}
-              className="flex items-center space-x-3"
-            >
+    <Router>
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
+        className="min-h-screen bg-gradient-to-br from-green-50 to-orange-50"
+      >
+        {/* Navbar (header) */}
+        <motion.header
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, type: 'spring', stiffness: 80 }}
+          className="bg-white shadow-lg sticky top-0 z-50 rounded-b-xl px-2 md:px-0"
+          style={{ height: NAVBAR_HEIGHT }}
+        >
+          <div className="container mx-auto flex items-center justify-between py-3">
+            {/* Logo + nom à gauche */}
+            <div className="flex items-center space-x-3">
               <img
-                src={logo}
+                src={logoImg}
                 alt="Logo FreshMarket"
                 className="w-14 h-14 rounded-full shadow-md border-2 border-green-700 bg-white object-contain"
                 style={{ background: 'white' }}
@@ -217,12 +441,15 @@ function App() {
               <span className="text-3xl font-extrabold text-green-800 tracking-tight drop-shadow-sm logo-title">
                 FreshMarket
               </span>
-            </motion.div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#" className="text-gray-700 hover:text-green-600 transition-colors font-medium px-2 py-1 rounded hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-200">Accueil</a>
-              <a href="#" className="text-gray-700 hover:text-green-600 transition-colors font-medium px-2 py-1 rounded hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-200">À Propos</a>
-              <a href="#" className="text-gray-700 hover:text-green-600 transition-colors font-medium px-2 py-1 rounded hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-200">Contact</a>
+            </div>
+            {/* Liens au centre/droite */}
+            <nav className="hidden md:flex flex-1 justify-center space-x-8">
+              <Link to="/" className="text-gray-700 hover:text-green-600 transition-colors font-medium px-2 py-1 rounded hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-200">Accueil</Link>
+              <a href="#histoire" onClick={scrollToHistoire} className="text-gray-700 hover:text-green-600 transition-colors font-medium px-2 py-1 rounded hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-200">Notre Histoire</a>
+              <Link to="/packs" className="text-gray-700 hover:text-green-600 transition-colors font-medium px-2 py-1 rounded hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-200">Packs</Link>
+              <Link to="/produits" className="text-gray-700 hover:text-green-600 transition-colors font-medium px-2 py-1 rounded hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-200">Produits</Link>
             </nav>
+            {/* Panier à droite */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -242,295 +469,419 @@ function App() {
               </Button>
             </motion.div>
           </div>
-        </div>
-      </header>
+        </motion.header>
 
-      {/* Hero Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.7, type: 'spring', stiffness: 60 }}
-        className="py-16 text-center"
-      >
-        <motion.div
+        {/* Hero Section full screen sous la navbar */}
+        <motion.section
+          initial={{ opacity: 0, y: 40, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.2, duration: 0.9, type: 'spring', stiffness: 50 }}
+          className="relative w-full flex items-center justify-center overflow-hidden"
+          style={{
+            backgroundImage: `url(${heroBg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`
+          }}
+        >
+          <div className="absolute inset-0 bg-black/60 z-0" />
+          <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center px-4 py-12">
+            <h2 className="text-4xl md:text-7xl font-extrabold text-white mb-4 drop-shadow-2xl leading-tight">
+              Fruits, Légumes & Produits Frais
+            </h2>
+            <p className="text-2xl md:text-3xl text-gray-100 mb-10 drop-shadow-xl font-medium">
+              Commandez des produits frais, sains et variés, livrés chez vous en quelques clics !
+            </p>
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-block px-10 py-5 bg-green-600 hover:bg-green-700 text-white text-2xl font-bold rounded-full shadow-2xl transition-all duration-200 border-4 border-white/10"
+            >
+              Découvrir le marché
+            </motion.a>
+          </div>
+        </motion.section>
+
+        {/* Section Notre Histoire */}
+        <section ref={histoireRef} id="histoire" className="w-full py-20 bg-white">
+          <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-12 px-4 md:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: -40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
+              className="flex-1"
+            >
+              <motion.h2
+                initial={{ opacity: 0, y: -40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
+                className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8"
+              >
+                NOTRE HISTOIRE
+              </motion.h2>
+              <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                FreshMarket est une aventure familiale passionnée par la qualité et la fraîcheur. Depuis des années, nous sélectionnons avec soin les meilleurs fruits, légumes et desserts marocains pour régaler vos papilles.<br/><br/>
+                Notre mission : vous offrir chaque jour le meilleur du marché
+              </p>
+              <p className="text-xl font-semibold text-green-700 font-serif">Fait avec Passion</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 40, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, type: 'spring', stiffness: 60, delay: 0.2 }}
+              className="flex-1 flex justify-center"
+            >
+              <img
+                src={histoireImg}
+                alt="Notre histoire FreshMarket"
+                className="rounded-2xl shadow-2xl w-full max-w-md object-cover animate-fadein"
+                style={{ minHeight: 320, maxHeight: 420 }}
+              />
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Section Packs (home) */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, type: 'spring', stiffness: 60 }}
+          className="container mx-auto px-4 py-16 min-h-[60vh]"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-orange-600 mb-10 text-center tracking-tight">Nos Packs</h2>
+          <div className="grid md:grid-cols-2 gap-10">
+            {packs.map((pack) => (
+              <Card key={pack.name} className="shadow-xl rounded-2xl overflow-hidden border">
+                <CardHeader className="bg-yellow-400/80 text-center py-6">
+                  <CardTitle className="text-3xl font-bold text-orange-700 tracking-wide">{pack.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="text-xl font-semibold text-yellow-600 mb-2">Fruits</h3>
+                      <ul className="space-y-2">
+                        {pack.fruits.map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 text-lg">
+                            {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
+                            <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
+                          </li>
+                        ))}
+                      </ul>
+                      <h3 className="text-xl font-semibold text-yellow-600 mt-6 mb-2">Herbes fraîches & Salades</h3>
+                      <ul className="space-y-2">
+                        {pack.herbes.map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 text-lg">
+                            {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
+                            <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-yellow-600 mb-2">Légumes</h3>
+                      <ul className="space-y-2">
+                        {pack.legumes.map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 text-lg">
+                            {item.image ? <img src={item.image} alt={item.label} className="w-6 h-6 rounded-full object-cover" /> : <span>{item.emoji}</span>}
+                            <span>{item.label} : <span className="font-bold">{item.qty}</span></span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="mt-8 text-center">
+                    <div className="bg-yellow-300 text-orange-800 font-bold text-lg rounded-lg py-3 px-6 inline-block shadow-md animate-pulse">
+                      {pack.highlight}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Categories */}
+        <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ delay: 0.3, duration: 0.7, type: 'spring', stiffness: 60 }}
+          className="container mx-auto px-4 mb-8"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
-            Fruits, Légumes & Desserts
-          </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Produits frais et desserts marocains traditionnels livrés chez vous
-          </p>
-          <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
-            <div className="flex items-center">
-              <Star className="w-4 h-4 text-yellow-400 mr-1" />
-              <span>Qualité Premium</span>
-            </div>
-            <div className="flex items-center">
-              <Phone className="w-4 h-4 text-green-500 mr-1" />
-              <span>Livraison Rapide</span>
-            </div>
-            <div className="flex items-center">
-              <MessageCircle className="w-4 h-4 text-blue-500 mr-1" />
-              <span>Commande WhatsApp</span>
-            </div>
-          </div>
-        </motion.div>
-      </motion.section>
-
-      {/* Categories */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.7, type: 'spring', stiffness: 60 }}
-        className="container mx-auto px-4 mb-8"
-      >
-        <div className="flex flex-wrap justify-center gap-4">
-          {categories.map((category) => (
-            <motion.button
-              key={category.id}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedCategory(category.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all ${
-                selectedCategory === category.id
-                  ? 'bg-green-600 text-white shadow-lg'
-                  : 'bg-white text-gray-700 hover:bg-green-50 shadow-md'
-              }`}
-            >
-              <span className="mr-2">{category.icon}</span>
-              {category.name}
-            </motion.button>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* Products Grid */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.7, type: 'spring', stiffness: 60 }}
-        className="container mx-auto px-4 pb-16"
-      >
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-        >
-          <AnimatePresence>
-            {filteredProducts.map((product) => (
-              <motion.div
-                key={product.id}
-                layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
+          <div className="flex flex-wrap justify-center gap-4">
+            {categories.map((category) => (
+              <motion.button
+                key={category.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                  selectedCategory === category.id
+                    ? 'bg-green-600 text-white shadow-lg'
+                    : 'bg-white text-gray-700 hover:bg-green-50 shadow-md'
+                }`}
               >
-                <Card className="h-full hover:shadow-xl transition-shadow">
-                  <CardHeader className="p-0">
-                    <div className="relative overflow-hidden rounded-t-lg">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-48 object-cover transition-transform hover:scale-110"
-                      />
-                      <Badge className="absolute top-2 right-2 bg-green-600">
-                        {product.price} MAD/{product.unit}
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="p-4">
-                    <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
-                    <CardDescription className="text-sm text-gray-600">
-                      {product.description}
-                    </CardDescription>
-                  </CardContent>
-                  <CardFooter className="p-4 pt-0">
-                    <Button
-                      onClick={() => addToCart(product)}
-                      className="w-full bg-green-600 hover:bg-green-700"
-                    >
-                      <Plus className="w-4 h-4 mr-2" />
-                      Ajouter au Panier
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </motion.div>
+                <span className="mr-2">{category.icon}</span>
+                {category.name}
+              </motion.button>
             ))}
-          </AnimatePresence>
-        </motion.div>
-      </motion.section>
+          </div>
+        </motion.section>
 
-      {/* Cart Sidebar */}
-      <AnimatePresence>
-        {isCartOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black bg-opacity-50 z-50"
-              onClick={() => setIsCartOpen(false)}
-            />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 h-full w-96 bg-white shadow-2xl z-50 overflow-y-auto"
-            >
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-xl font-bold">Mon Panier</h3>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsCartOpen(false)}
-                  >
-                    <X className="w-5 h-5" />
-                  </Button>
-                </div>
-
-                {cart.length === 0 ? (
-                  <div className="text-center py-8">
-                    <ShoppingCart className="w-16 h-16 mx-auto text-gray-300 mb-4" />
-                    <p className="text-gray-500">Votre panier est vide</p>
-                  </div>
-                ) : (
-                  <>
-                    <div className="space-y-4 mb-6">
-                      {cart.map((item) => (
-                        <div key={item.id} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="w-12 h-12 object-cover rounded"
-                          />
-                          <div className="flex-1">
-                            <h4 className="font-medium text-sm">{item.name}</h4>
-                            <p className="text-xs text-gray-500">{item.price} MAD/{item.unit}</p>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            >
-                              <Minus className="w-3 h-3" />
-                            </Button>
-                            <span className="w-8 text-center text-sm">{item.quantity}</span>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            >
-                              <Plus className="w-3 h-3" />
-                            </Button>
-                          </div>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => removeFromCart(item.id)}
-                          >
-                            <X className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="border-t pt-4">
-                      <div className="flex justify-between items-center mb-4">
-                        <span className="text-lg font-bold">Total:</span>
-                        <span className="text-xl font-bold text-green-600">{total} MAD</span>
+        {/* Products Grid */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.7, type: 'spring', stiffness: 60 }}
+          className="container mx-auto px-4 pb-16"
+        >
+          <motion.div 
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          >
+            <AnimatePresence>
+              {filteredProducts.map((product) => (
+                <motion.div
+                  key={product.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card className="h-full hover:shadow-xl transition-shadow">
+                    <CardHeader className="p-0">
+                      <div className="relative overflow-hidden rounded-t-lg">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-48 object-cover transition-transform hover:scale-110"
+                        />
+                        <Badge className="absolute top-2 right-2 bg-green-600">
+                          {product.price} MAD/{product.unit}
+                        </Badge>
                       </div>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
+                      <CardDescription className="text-sm text-gray-600">
+                        {product.description}
+                      </CardDescription>
+                    </CardContent>
+                    <CardFooter className="p-4 pt-0">
                       <Button
-                        onClick={openOrderForm}
+                        onClick={() => addToCart(product)}
                         className="w-full bg-green-600 hover:bg-green-700"
                       >
-                        <MessageCircle className="w-4 h-4 mr-2" />
-                        Commander via WhatsApp
+                        <Plus className="w-4 h-4 mr-2" />
+                        Ajouter au Panier
                       </Button>
+                    </CardFooter>
+                  </Card>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </motion.section>
+
+        {/* Cart Sidebar */}
+        <AnimatePresence>
+          {isCartOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black bg-opacity-50 z-50"
+                onClick={() => setIsCartOpen(false)}
+              />
+              <motion.div
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                className="fixed right-0 top-0 h-full w-96 bg-white shadow-2xl z-50 overflow-y-auto"
+              >
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-xl font-bold">Mon Panier</h3>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setIsCartOpen(false)}
+                    >
+                      <X className="w-5 h-5" />
+                    </Button>
+                  </div>
+
+                  {cart.length === 0 ? (
+                    <div className="text-center py-8">
+                      <ShoppingCart className="w-16 h-16 mx-auto text-gray-300 mb-4" />
+                      <p className="text-gray-500">Votre panier est vide</p>
                     </div>
-                  </>
-                )}
-              </div>
+                  ) : (
+                    <>
+                      <div className="space-y-4 mb-6">
+                        {cart.map((item) => (
+                          <div key={item.id} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="w-12 h-12 object-cover rounded"
+                            />
+                            <div className="flex-1">
+                              <h4 className="font-medium text-sm">{item.name}</h4>
+                              <p className="text-xs text-gray-500">{item.price} MAD/{item.unit}</p>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                              >
+                                <Minus className="w-3 h-3" />
+                              </Button>
+                              <span className="w-8 text-center text-sm">{item.quantity}</span>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                              >
+                                <Plus className="w-3 h-3" />
+                              </Button>
+                            </div>
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => removeFromCart(item.id)}
+                            >
+                              <X className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="border-t pt-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <span className="text-lg font-bold">Total:</span>
+                          <span className="text-xl font-bold text-green-600">{total} MAD</span>
+                        </div>
+                        <Button
+                          onClick={openOrderForm}
+                          className="w-full bg-green-600 hover:bg-green-700"
+                        >
+                          <MessageCircle className="w-4 h-4 mr-2" />
+                          Commander via WhatsApp
+                        </Button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+
+        {/* Floating Actions (audio, email, plus) en bas à gauche */}
+        <FloatingActions />
+
+        {/* Chatbot Button en bas à droite (bleu, robot) */}
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setIsChatbotOpen(!isChatbotOpen)}
+          className="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center justify-center z-50 chatbot-glow"
+          style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.18)' }}
+        >
+          <Bot className="w-8 h-8" />
+          <style>{`
+            .chatbot-glow:hover {
+              box-shadow: 0 0 0 0 #2563eb, 0 0 16px 4px #2563eb66, 0 4px 16px rgba(0,0,0,0.18);
+              animation: chatbot-glow-anim 1.5s infinite alternate;
+            }
+            @keyframes chatbot-glow-anim {
+              0% { box-shadow: 0 0 0 0 #2563eb, 0 0 16px 4px #2563eb66, 0 4px 16px rgba(0,0,0,0.18); }
+              100% { box-shadow: 0 0 0 8px #2563eb44, 0 0 32px 8px #2563eb66, 0 4px 16px rgba(0,0,0,0.18); }
+            }
+          `}</style>
+        </motion.button>
+
+        {/* ChatBot : positionné juste au-dessus du bouton, aligné à droite, stable */}
+        <AnimatePresence>
+          {isChatbotOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 40, scale: 0.95 }}
+              transition={{ duration: 0.35, type: 'spring', stiffness: 80 }}
+              className="fixed right-6 bottom-[88px] z-50 w-80"
+              style={{ minWidth: 320, maxWidth: 384 }}
+            >
+              <ChatBot
+                isOpen={isChatbotOpen}
+                onClose={() => setIsChatbotOpen(false)}
+              />
             </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
 
-      {/* Floating Actions (audio, email, plus) en bas à gauche */}
-      <FloatingActions />
-
-      {/* Chatbot Button en bas à droite (inchangé) */}
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => setIsChatbotOpen(!isChatbotOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center justify-center z-40"
-      >
-        <MessageCircle className="w-6 h-6" />
-      </motion.button>
-
-      {/* ChatBot */}
-      <ChatBot
-        isOpen={isChatbotOpen}
-        onClose={() => setIsChatbotOpen(false)}
-      />
-
-      {/* Footer */}
-      <motion.footer
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.7, type: 'spring', stiffness: 60 }}
-        className="bg-gray-800 text-white py-12"
-      >
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">FreshMarket</h3>
-              <p className="text-gray-300">
-                Votre source de confiance pour des produits frais et des desserts marocains authentiques.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Contact</h4>
-              <div className="space-y-2 text-gray-300">
-                <div className="flex items-center">
-                  <Phone className="w-4 h-4 mr-2" />
-                  <span>+212 6 00 00 00 00</span>
+        {/* Footer */}
+        <motion.footer
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.7, type: 'spring', stiffness: 60 }}
+          className="bg-gray-800 text-white py-12"
+        >
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4">FreshMarket</h3>
+                <p className="text-gray-300">
+                  Votre source de confiance pour des produits frais et des desserts marocains authentiques.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-bold mb-4">Contact</h4>
+                <div className="space-y-2 text-gray-300">
+                  <div className="flex items-center">
+                    <Phone className="w-4 h-4 mr-2" />
+                    <span>+212 6 00 00 00 00</span>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="w-4 h-4 mr-2" />
+                    <span>Casablanca, Maroc</span>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <MapPin className="w-4 h-4 mr-2" />
-                  <span>Casablanca, Maroc</span>
+              </div>
+              <div>
+                <h4 className="font-bold mb-4">Horaires</h4>
+                <div className="text-gray-300">
+                  <p>Lun - Sam: 8h00 - 20h00</p>
+                  <p>Dimanche: 9h00 - 18h00</p>
                 </div>
               </div>
             </div>
-            <div>
-              <h4 className="font-bold mb-4">Horaires</h4>
-              <div className="text-gray-300">
-                <p>Lun - Sam: 8h00 - 20h00</p>
-                <p>Dimanche: 9h00 - 18h00</p>
-              </div>
+            <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+              <p>&copy; 2024 FreshMarket. Tous droits réservés.</p>
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 FreshMarket. Tous droits réservés.</p>
-          </div>
-        </div>
-      </motion.footer>
+        </motion.footer>
 
-      {/* WhatsApp Order Form */}
-      <WhatsAppOrderForm
-        cart={cart}
-        total={total}
-        isOpen={isOrderFormOpen}
-        onClose={() => setIsOrderFormOpen(false)}
-      />
-    </motion.div>
+        {/* WhatsApp Order Form */}
+        <WhatsAppOrderForm
+          cart={cart}
+          total={total}
+          isOpen={isOrderFormOpen}
+          onClose={() => setIsOrderFormOpen(false)}
+        />
+
+      </motion.div>
+    </Router>
   )
 }
 
